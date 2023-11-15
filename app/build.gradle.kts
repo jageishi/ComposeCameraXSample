@@ -33,8 +33,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    val composeReportPath = "${rootProject.file(".").absolutePath}/build/compose-reports"
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += listOf(
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${composeReportPath}",
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${composeReportPath}"
+        )
     }
     buildFeatures {
         compose = true
